@@ -23,13 +23,25 @@ public class Application {
             //findStudent(studentDAO);
             //queryForStudent(studentDAO);
             //queryForFindByLastName(studentDAO);
-            updateStudent(studentDAO);
+            //updateStudent(studentDAO);
+            //deleteStudent(studentDAO);
+            deleteAll(studentDAO);
         };
+    }
+
+    private void deleteAll(StudentDAO studentDAO) {
+        int rows = studentDAO.deleteAll();
+        System.out.println("Number deleted " + rows);
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        int studentId = 3;
+        studentDAO.delete(studentId);
     }
 
     private void updateStudent(StudentDAO studentDAO) {
         int studentID = 1;
-        Student student = studentDAO.findById(1);
+        Student student = studentDAO.findById(studentID);
         student.setFirstName("Mohamed");
         studentDAO.update(student);
     }
