@@ -22,8 +22,16 @@ public class Application {
             //createStudent(studentDAO);
             //findStudent(studentDAO);
             //queryForStudent(studentDAO);
-            queryForFindByLastName(studentDAO);
+            //queryForFindByLastName(studentDAO);
+            updateStudent(studentDAO);
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        int studentID = 1;
+        Student student = studentDAO.findById(1);
+        student.setFirstName("Mohamed");
+        studentDAO.update(student);
     }
 
     private void queryForFindByLastName(StudentDAO studentDAO) {

@@ -11,15 +11,12 @@ import java.util.List;
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
-    // define field of entity manger
     private final EntityManager entityManager;
 
-    // inject entity manger using constructor
     public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    // implement save method
     @Override
     @Transactional
     public void save(Student student) {
@@ -42,5 +39,11 @@ public class StudentDAOImpl implements StudentDAO {
         TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE firstName=:theData", Student.class);
         query.setParameter("theData", lastName);
         return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        entityManager.merge(student);
     }
 }
