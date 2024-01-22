@@ -2,14 +2,17 @@ package com.amr.cruddemo.dao;
 
 import com.amr.cruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
     // define field of entity manger
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     // inject entity manger using constructor
     public StudentDAOImpl(EntityManager entityManager) {
@@ -26,5 +29,11 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public Student findById(Integer id) {
         return entityManager.find(Student.class, id);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student", Student.class);
+        return query.getResultList();
     }
 }
