@@ -19,13 +19,13 @@ public class Application {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
-            //createStudent(studentDAO);
+            createStudent(studentDAO);
             //findStudent(studentDAO);
             //queryForStudent(studentDAO);
             //queryForFindByLastName(studentDAO);
             //updateStudent(studentDAO);
             //deleteStudent(studentDAO);
-            deleteAll(studentDAO);
+            //deleteAll(studentDAO);
         };
     }
 
